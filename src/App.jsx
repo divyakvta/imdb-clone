@@ -1,10 +1,11 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
-      <h1 className="font-extrabold">imdb-clone</h1>
-    </div>
+    <main>
+      <Navbar/>
+    </main>
   );
 }
 
