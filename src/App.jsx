@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <main>
+    <main className="mb-20">
       <BrowserRouter>
         <Navbar />
         <Routes>
