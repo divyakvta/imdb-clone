@@ -19,13 +19,13 @@ const MovieCard = ({
 
   return (
     <div
-      className="relative h-[40vh] w-[200px] bg-center bg-cover rounded-lg hover:scale-110 duration-300 hover:cursor-pointer"
+      className="relative h-[40vh] w-[200px] bg-center bg-cover rounded-lg hover:scale-110 duration-300 hover:cursor-pointer mx-1 my-2"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
       }}
     >
       {doesContain(movieObj) ? ( 
-        <div className=" flex justify-center m-2 absolute right-1 h-8 w-8 items-center rounded-lg bg-gray-900/60"
+        <div className="flex justify-center m-2 absolute right-1 h-8 w-8 items-center rounded-lg bg-gray-900/60"
         onClick={() => removeFromWatchList(movieObj)}>&#10060;</div>
       ) : (
         <div

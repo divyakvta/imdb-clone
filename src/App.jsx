@@ -7,26 +7,28 @@ import WatchList from "./components/WatchList";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-
   const [watchList, setWatchList] = useState([]);
 
+  //Add movies to the watchlist
   const addToWatchList = (movieObj) => {
     let newWatchList = [...watchList, movieObj];
-    localStorage.setItem('imdb_clone', JSON.stringify(newWatchList))
-    setWatchList(newWatchList)
-    console.log(newWatchList)
-  }
+    localStorage.setItem("imdb_clone", JSON.stringify(newWatchList));
+    setWatchList(newWatchList);
+  };
 
-  const removeFromWatchList =(movieObj) => {
-    let filteredWatchList = watchList.filter(movie => {
-      return movie.id !== movieObj.id
-    })
-    setWatchList(filteredWatchList)
-    console.log(filteredWatchList )
-  }
+  //Remove movies from watchlist
+  const removeFromWatchList = (movieObj) => {
+    let filteredWatchList = watchList.filter((movie) => {
+      return movie.id !== movieObj.id;
+    });
 
+    setWatchList(filteredWatchList);
+    localStorage.setItem("imdb_clone", JSON.stringify(filteredWatchList));
+  };
+
+  //Retrieve movie data from local storage 
   useEffect(() => {
-    const moviesFromLocalStorage = localStorage.getItem('imdb_clone');
+    const moviesFromLocalStorage = localStorage.getItem("imdb_clone");
     if (moviesFromLocalStorage) {
       setWatchList(JSON.parse(moviesFromLocalStorage));
     }
@@ -37,16 +39,26 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          
           <Route
             path="/"
-            element={
-              <>
-                <Banner /> <Movies watchList={watchList} addToWatchList={addToWatchList} removeFromWatchList={removeFromWatchList} />
-              </>
+            element={  
+                <Movies
+                  watchList={watchList}
+                  addToWatchList={addToWatchList}
+                  removeFromWatchList={removeFromWatchList}
+                />
             }
           />
-          <Route path="/watch-list" element={<WatchList watchList={watchList} />} />
+          <Route
+            path="/watch-list"
+            element={
+              <WatchList
+                watchList={watchList}
+                setWatchList={setWatchList}
+                removeFromWatchList={removeFromWatchList}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </main>

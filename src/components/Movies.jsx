@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./Moviecard";
 import axios from "axios";
 import Pagination from "./Pagination";
+import Banner from "./Banner";
 
 const Movies = ({ watchList, addToWatchList, removeFromWatchList }) => {
   const [movies, setMovies] = useState([]);
@@ -21,6 +22,7 @@ const Movies = ({ watchList, addToWatchList, removeFromWatchList }) => {
     setPageNo(pageNo + 1);
   };
 
+  //Fetching data from API
   useEffect(() => {
     axios
       .get(
@@ -34,8 +36,9 @@ const Movies = ({ watchList, addToWatchList, removeFromWatchList }) => {
 
   return (
     <div>
+      <Banner banner_img={movies[0]?.backdrop_path} title={movies[0]?.title}/>
       <div className="text-2xl m-5 font-bold text-center">Trending Movies</div>
-      <div className="flex flex-row flex-wrap justify-around gap-2">
+      <div className="flex flex-row flex-wrap justify-around">
         {movies.map((movie, index) => (
           <MovieCard
             key={index}
